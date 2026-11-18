@@ -66,22 +66,13 @@
     <section id="writeup">
       <h2>Prototype writeup</h2>
 
-      <h3>What have we done so far?</h3>
-      <p>We chose the NASA MODIS dataset and focused our project on the Sierra Nevada snowpack, using the contrast between
-        the 2015 drought and the 2023 record snow year as our hook. We wrote a Python pipeline that downloads daily MODIS
-        snow cover images from NASA's GIBS API, combines four days at a time to see past clouds, and converts pixel
-        colors back into snow or no-snow using NASA's published colormap. From those images we computed the percent of
-        the Sierra Nevada covered by snow twice a month for every winter from 2013 to 2024. We built the page structure
-        for our explorable explanation and our first interactive D3 visualization, a line chart where readers can pick
-        winters to compare and hover to read exact values.</p>
+      <h3>Current Progress:</h3>
+      <p>We chose the NASA MODIS dataset and focused our project on the Sierra Nevada snowpack. We used the difference between the 2015 drought and the 2023 record snow year as our hook. We wrote a Python pipeline that downloads daily MODIS snow cover images from NASA’s GIBS API, combines four days at a time to see past clouds, and converts pixel colors back into snow or no snow using NASA’s published colormap. From those images, we calculated the percent of the Sierra Nevada covered by snow twice a month for every winter from 2013 to 2024. We also planned out the structure of our page from the opening hook to our final takeaway. For our first D3 interactive visualization, we made a line chart where each winter is one line and readers can click years to compare them, and hovering above it shows the exact snow cover values.
+</p>
 
-      <h3>What will be the most challenging part to design, and why?</h3>
-      <p>The hardest part will be the winter playback map, where readers scrub through a winter and watch snow build up
-        and melt across the Sierra. Each frame is a satellite image, so we need to keep the page fast while loading many
-        images, and we need to decide whether to draw them on a canvas or pre-process them into a lighter format. We also
-        need to explain clearly that our snow percentages come from image pixels rather than raw measurements, without
-        overwhelming readers with technical detail. Finally, connecting the snow story to reservoirs and vegetation
-        downstream without losing the main thread will take careful storytelling and layout.</p>
+      <h3>Predicted Challenges:</h3>
+      <p>We think that the most challenging part of this project will be making the interactive winter playback map part. When readers get to this part of the article, they will be able to drag a slider and see snow build up and then melt across the Sierra during one winter. Every point on the slider is a different satellite image, so we’ll have to keep the page running pretty fast while we load lots of images. Also, to not cause confusion, we’ll probably have to explain that the image pixels are what give us the snow percentages (and that they aren’t direct measurements). We’ll also have to connect the story we found with the snow changes to the impact on the reservoirs and the downstream vegetation while still sticking to the point. And finally, we need to play around with different visualizations so that we can find the visualization through which readers can best understand our goal of showing the drier and wetter years (and better than static visualizations could show).
+</p>
     </section>
   </main>
 
