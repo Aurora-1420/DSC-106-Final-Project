@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Golden State Turned White</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+  <header class="hero">
+    <p class="kicker">DSC 106 Final Project · Prototype</p>
+    <h1>The Golden State Turned White</h1>
+    <p class="subtitle">The Rise and Vanishing of California’s Frozen Reservoir</p>
+    <p class="team">Team: Aurora Cong, Pali Jain, Kitty Ming, Trang Kieu</p>
+  </header>
+
+  <main>
+    <!-- 1. HOOK -->
+    <section id="hook">
+      <h2>Same mountains, eight years apart</h2>
+      <p>On April 1, 2015, California's governor stood in a dry meadow in the Sierra Nevada that should have been buried in snow.
+        Eight years later, the same mountains held one of the deepest snowpacks on record. How can one place swing that far?</p>
+      <figure id="hook-figure">
+        <img src="images/1_hook_2015_vs_2023.png" alt="MODIS snow cover maps of the Sierra Nevada on April 1, 2015 and April 1, 2023"
+             onerror="this.closest('figure').classList.add('missing')">
+        <figcaption>MODIS Terra snow cover, April 1, 2015 vs April 1, 2023. White = snow.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 2. MAIN INTERACTIVE -->
+    <section id="winters">
+      <h2>Every winter, one line</h2>
+      <p>Each line traces one winter: how much of the Sierra Nevada was covered in snow from November to July.
+        Snow arrives, peaks, and melts every year, but how high it climbs and how long it lasts changes a lot.
+        <strong>Click years below to compare them, and hover over the chart to read exact values.</strong></p>
+
+      <div class="controls">
+        <div id="year-chips" class="chips" role="group" aria-label="Choose winters to highlight"></div>
+        <button id="reset-btn" class="ghost">Reset to 2015 vs 2023</button>
+      </div>
+      <div id="chart" class="chart"></div>
+      <p class="note">Water year = October through September (the 2023 water year runs Oct 2022 – Sep 2023).
+        Snow % is computed from MODIS daily snow cover images, combined over 4 days to see past clouds.</p>
+    </section>
+
+    <!-- 3. PLANNED SECTIONS -->
+    <section id="downstream" class="planned">
+      <h2>Downstream: where the snow goes <span class="tag">coming soon</span></h2>
+      <p>Before-and-after satellite views of Lake Oroville and a spring vegetation (NDVI) comparison, showing how a
+        dry or wet winter in the mountains carries down to reservoirs and hillsides.</p>
+    </section>
+
+    <section id="boom-bust" class="planned">
+      <h2>Boom and bust <span class="tag">coming soon</span></h2>
+      <p>Peak snow cover for every winter since 2013, plus a winter playback slider that animates snow building and
+        melting across the map.</p>
+    </section>
+
+    <section id="takeaway" class="planned">
+      <h2>So what? <span class="tag">coming soon</span></h2>
+      <p>California's water future depends less on the "average" year and more on the growing gap between extremes.</p>
+    </section>
+
+    <!-- 4. PROTOTYPE WRITEUP (required by the rubric) -->
+    <section id="writeup">
+      <h2>Prototype writeup</h2>
+
+      <h3>What have we done so far?</h3>
+      <p>We chose the NASA MODIS dataset and focused our project on the Sierra Nevada snowpack, using the contrast between
+        the 2015 drought and the 2023 record snow year as our hook. We wrote a Python pipeline that downloads daily MODIS
+        snow cover images from NASA's GIBS API, combines four days at a time to see past clouds, and converts pixel
+        colors back into snow or no-snow using NASA's published colormap. From those images we computed the percent of
+        the Sierra Nevada covered by snow twice a month for every winter from 2013 to 2024. We built the page structure
+        for our explorable explanation and our first interactive D3 visualization, a line chart where readers can pick
+        winters to compare and hover to read exact values.</p>
+
+      <h3>What will be the most challenging part to design, and why?</h3>
+      <p>The hardest part will be the winter playback map, where readers scrub through a winter and watch snow build up
+        and melt across the Sierra. Each frame is a satellite image, so we need to keep the page fast while loading many
+        images, and we need to decide whether to draw them on a canvas or pre-process them into a lighter format. We also
+        need to explain clearly that our snow percentages come from image pixels rather than raw measurements, without
+        overwhelming readers with technical detail. Finally, connecting the snow story to reservoirs and vegetation
+        downstream without losing the main thread will take careful storytelling and layout.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Data: NASA MODIS (Terra) via Worldview / GIBS. Built with D3.js for DSC 106 at UC San Diego.</p>
+  </footer>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+  <script src="main.js"></script>
+</body>
+</html>

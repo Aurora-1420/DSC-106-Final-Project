@@ -1,0 +1,96 @@
+:root {
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #8a8984;
+  --grid: #e8e7e3;
+  --other: #c9c8c3;
+  --accent: #2a78d6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+.hero {
+  padding: 72px 24px 48px;
+  text-align: center;
+  background: linear-gradient(180deg, #1c3a5e 0%, #2f5f8f 60%, #e9eef4 100%);
+  color: #fff;
+}
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0.2em 0; letter-spacing: -0.02em; }
+.kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; opacity: 0.8; margin: 0; }
+.subtitle { font-size: 1.25rem; margin: 0; opacity: 0.95; }
+.team { margin-top: 1.5em; font-size: 0.95rem; color: #1c3a5e; }
+
+main { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+section { padding: 48px 0; border-bottom: 1px solid var(--grid); }
+h2 { font-size: 1.6rem; margin: 0 0 0.4em; letter-spacing: -0.01em; }
+h3 { font-size: 1.1rem; margin: 1.5em 0 0.3em; }
+p { color: #2a2a28; }
+.note { font-size: 0.85rem; color: var(--ink-2); }
+
+figure { margin: 24px 0 0; }
+figure img { width: 100%; border-radius: 8px; display: block; }
+figcaption { font-size: 0.85rem; color: var(--ink-2); margin-top: 6px; }
+figure.missing img { display: none; }
+figure.missing::before {
+  content: "Hook image goes here: export figures/1_hook_2015_vs_2023.png from the notebook to images/hook_2015_vs_2023.png";
+  display: block; padding: 48px 24px; text-align: center; border: 2px dashed var(--other);
+  border-radius: 8px; color: var(--muted);
+}
+
+/* controls */
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin: 20px 0 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font: inherit; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px;
+  border: 1px solid var(--other); background: var(--surface); color: var(--ink-2); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.chip:hover { border-color: var(--ink-2); }
+.chip .swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--other); }
+.chip[aria-pressed="true"] { color: var(--ink); border-color: var(--ink); font-weight: 600; }
+.chip:disabled { opacity: 0.4; cursor: not-allowed; }
+button.ghost {
+  font: inherit; font-size: 0.85rem; background: none; border: none; color: var(--accent);
+  cursor: pointer; padding: 4px 0; text-decoration: underline;
+}
+
+/* chart */
+.chart { background: var(--surface); border-radius: 8px; padding: 8px 4px; }
+.chart svg { display: block; width: 100%; height: auto; }
+.axis text { fill: var(--ink-2); font-size: 12px; }
+.axis path, .axis line { stroke: var(--muted); }
+.grid line { stroke: var(--grid); }
+.grid path { display: none; }
+.axis-label { fill: var(--ink-2); font-size: 12px; }
+.year-line { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.end-label { font-size: 12px; font-weight: 700; fill: var(--ink); }
+.crosshair { stroke: var(--muted); stroke-dasharray: 3 3; }
+.chart-msg { padding: 48px 24px; text-align: center; color: var(--muted); }
+
+.tooltip {
+  position: fixed; pointer-events: none; z-index: 10;
+  background: var(--surface); border: 1px solid var(--grid); border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 8px 10px; font-size: 0.8rem; min-width: 150px;
+}
+.tooltip .tt-date { color: var(--ink-2); margin-bottom: 4px; }
+.tooltip .tt-row { display: flex; align-items: center; gap: 6px; justify-content: space-between; }
+.tooltip .tt-row span:first-child { display: inline-flex; align-items: center; gap: 6px; }
+.tooltip .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+.planned { opacity: 0.75; }
+.tag {
+  font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+  background: #eceae4; color: var(--ink-2); padding: 2px 8px; border-radius: 999px; vertical-align: middle;
+}
+
+footer { text-align: center; padding: 32px 24px; font-size: 0.85rem; color: var(--ink-2); }
